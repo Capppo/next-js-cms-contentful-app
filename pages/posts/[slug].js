@@ -8,16 +8,25 @@ import Header from '../../components/header'
 import PostHeader from '../../components/post-header'
 import SectionSeparator from '../../components/section-separator'
 import Layout from '../../components/layout'
-import { getAllPostsWithSlug, getPostAndMorePosts } from '../../lib/api'
+import { getAllPostsWithSlug, getPostAndMorePosts, getAllKeyValue } from '../../lib/api'
 import PostTitle from '../../components/post-title'
 import { CMS_NAME } from '../../lib/constants'
 
-export default function Post({ post, morePosts, preview }) {
+export default function Post({ post, morePosts, preview, keyValue }) {
   const router = useRouter()
 
   if (!router.isFallback && !post) {
     return <ErrorPage statusCode={404} />
   }
+
+  const urlBuilder = (keyValue) => {
+    const found = keyValue.find(element => element.key == post.type);
+    let baseUrl = found.value
+    if ( baseUrl.substring(baseUrl.length-1) == "/" ) {baseUrl=baseUrl.substring(0,baseUrl.length-2)}
+    if (post.folderName) {baseUrl = baseUrl+"/"+post.folderName}
+    return baseUrl
+  }
+  
 
   return (
     <Layout preview={preview}>
@@ -40,7 +49,10 @@ export default function Post({ post, morePosts, preview }) {
                 date={post.date}
                 author={post.author}
               />
-              <PostBody content={post.content} />
+              <PostBody content={post.content} baseUrl={urlBuilder(keyValue)}/>
+              {post.download
+               ? <PostBody content={post.download} baseUrl={urlBuilder(keyValue)} />
+               : ''}
             </article>
             <SectionSeparator />
             {morePosts && morePosts.length > 0 && (
@@ -55,12 +67,14 @@ export default function Post({ post, morePosts, preview }) {
 
 export async function getStaticProps({ params, preview = false }) {
   const data = await getPostAndMorePosts(params.slug, preview)
+  const data2 = await getAllKeyValue(preview)
 
   return {
     props: {
       preview,
       post: data?.post ?? null,
       morePosts: data?.morePosts ?? null,
+      keyValue: data2
     },
   }
 }

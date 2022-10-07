@@ -1,9 +1,35 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
-import { BLOCKS } from '@contentful/rich-text-types'
+import { BLOCKS, INLINES, MARKS} from '@contentful/rich-text-types'
 import markdownStyles from './markdown-styles.module.css'
 import RichTextAsset from './rich-text-asset'
 
-const customMarkdownOptions = (content) => ({
+const Bold = ({ children }) => <p className="bold">{children}</p>; // EXAMPLE FROM NPM
+
+const Text = ({ children }) => <p className="align-center">{children}</p>; // EXAMPLE FROM NPM
+
+const slash = (baseUrl,uri) => {
+  
+  if ( baseUrl.substring(baseUrl.length-1) == "/" ) {baseUrl=baseUrl.substring(0,baseUrl.length-2)}
+  if ( uri.substring(0,1) == "/" ) {uri=uri.substring(1)}
+
+  return baseUrl+"/"+uri
+}
+
+const InlineLink = ({uri, text, baseUrl}) => {
+  /*const mixpanel = useMixpanel()
+  const clickTracer = (title) => {
+    mixpanel.track("LINK: "+title);
+  }*/
+  const href = slash(baseUrl, uri)
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" 
+       className="text-blue-600 hover:text-blue-600 hover:font-semibold" /*onClick={() => clickTracer(text)}*/>
+        {text}
+    </a>
+  )
+}
+
+const customMarkdownOptions = (content, baseUrl) => ({
   renderNode: {
     [BLOCKS.EMBEDDED_ASSET]: (node) => (
       <RichTextAsset
@@ -11,16 +37,27 @@ const customMarkdownOptions = (content) => ({
         assets={content.links.assets.block}
       />
     ),
+    [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+    [BLOCKS.HEADING_3]: (node, children) => <h3 className="text-purple-800 font-semibold">{children}</h3>,
+    [BLOCKS.QUOTE]: (node, children) => <div className="blockquote">{children}</div>,
+    [INLINES.HYPERLINK]: node => {
+      const { uri} = node.data;
+      const text = node.content[0].value
+      const data = node.content[0].data
+      
+      return <InlineLink uri={uri} text={text} baseUrl={baseUrl} />
+      
+    }
   },
 })
 
-export default function PostBody({ content }) {
+export default function PostBody({ content, baseUrl }) {
   return (
     <div className="max-w-2xl mx-auto">
       <div className={markdownStyles['markdown']}>
         {documentToReactComponents(
           content.json,
-          customMarkdownOptions(content)
+          customMarkdownOptions(content, baseUrl )
         )}
       </div>
     </div>

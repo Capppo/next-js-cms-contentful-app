@@ -25,6 +25,7 @@ export default function Alert({ preview }) {
             </>
           ) : (
             <>
+              {/*
               The source code for this blog is{' '}
               <a
                 href={`https://github.com/vercel/next.js/tree/canary/examples/${EXAMPLE_PATH}`}
@@ -33,6 +34,8 @@ export default function Alert({ preview }) {
                 available on GitHub
               </a>
               .
+              */}
+              More features available soon, stay tuned!!!
             </>
           )}
         </div>
