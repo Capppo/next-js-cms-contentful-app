@@ -1,2 +1,0 @@
-# import contntent model and content in selected spece from previous export json
-npx cross-env CONTENTFUL_SPACE_ID=9hfh398lg64w CONTENTFUL_MANAGEMENT_TOKEN=CFPAT-LjXK0H-PUknD2QZiFiUqRnlS_l5ht-qQJHEwyUrmMs8 npm run setup
