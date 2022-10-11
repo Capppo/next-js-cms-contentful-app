@@ -7,20 +7,20 @@ const Bold = ({ children }) => <p className="bold">{children}</p>; // EXAMPLE FR
 
 const Text = ({ children }) => <p className="align-center">{children}</p>; // EXAMPLE FROM NPM
 
-const slash = (baseUrl,uri) => {
+const slash = (baseUrl,uri, userName) => {
   
   if ( baseUrl.substring(baseUrl.length-1) == "/" ) {baseUrl=baseUrl.substring(0,baseUrl.length-2)}
   if ( uri.substring(0,1) == "/" ) {uri=uri.substring(1)}
 
-  return baseUrl+"/"+uri
+  return baseUrl + "/"+ uri + "&user=" + userName
 }
 
-const InlineLink = ({uri, text, baseUrl}) => {
+const InlineLink = ({uri, text, baseUrl, userName}) => {
   /*const mixpanel = useMixpanel()
   const clickTracer = (title) => {
     mixpanel.track("LINK: "+title);
   }*/
-  const href = slash(baseUrl, uri)
+  const href = slash(baseUrl, uri, userName)
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" 
        className="text-blue-600 hover:text-blue-600 hover:font-semibold" /*onClick={() => clickTracer(text)}*/>
@@ -29,7 +29,7 @@ const InlineLink = ({uri, text, baseUrl}) => {
   )
 }
 
-const customMarkdownOptions = (content, baseUrl) => ({
+const customMarkdownOptions = (content, baseUrl, userName) => ({
   renderNode: {
     [BLOCKS.EMBEDDED_ASSET]: (node) => (
       <RichTextAsset
@@ -45,19 +45,19 @@ const customMarkdownOptions = (content, baseUrl) => ({
       const text = node.content[0].value
       const data = node.content[0].data
       
-      return <InlineLink uri={uri} text={text} baseUrl={baseUrl} />
+      return <InlineLink uri={uri} text={text} baseUrl={baseUrl} userName={userName} />
       
     }
   },
 })
 
-export default function PostBody({ content, baseUrl }) {
+export default function PostBody({ content, baseUrl , userName}) {
   return (
     <div className="max-w-2xl mx-auto">
       <div className={markdownStyles['markdown']}>
         {documentToReactComponents(
           content.json,
-          customMarkdownOptions(content, baseUrl )
+          customMarkdownOptions(content, baseUrl, userName )
         )}
       </div>
     </div>

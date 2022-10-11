@@ -11,6 +11,7 @@ import Layout from '../../components/layout'
 import { getAllPostsWithSlug, getPostAndMorePosts, getAllKeyValue } from '../../lib/api'
 import PostTitle from '../../components/post-title'
 import { CMS_NAME } from '../../lib/constants'
+import { useFetchUser } from '../../lib/user'
 
 export default function Post({ post, morePosts, preview, keyValue }) {
   const router = useRouter()
@@ -18,6 +19,8 @@ export default function Post({ post, morePosts, preview, keyValue }) {
   if (!router.isFallback && !post) {
     return <ErrorPage statusCode={404} />
   }
+
+  const { user, loading } = useFetchUser()
 
   const urlBuilder = (keyValue) => {
     const found = keyValue.find(element => element.key == post.type);
@@ -29,7 +32,7 @@ export default function Post({ post, morePosts, preview, keyValue }) {
   
 
   return (
-    <Layout preview={preview}>
+    <Layout preview={preview} user={user} loading={loading}>
       <Container>
         <Header />
         {router.isFallback ? (
@@ -49,9 +52,9 @@ export default function Post({ post, morePosts, preview, keyValue }) {
                 date={post.date}
                 author={post.author}
               />
-              <PostBody content={post.content} baseUrl={urlBuilder(keyValue)}/>
-              {post.download
-               ? <PostBody content={post.download} baseUrl={urlBuilder(keyValue)} />
+              <PostBody content={post.content} baseUrl={urlBuilder(keyValue)} userName={user?.name} />
+              {post.download && user?.properties?.download
+               ? <PostBody content={post.download} baseUrl={urlBuilder(keyValue)} userName={user?.name} />
                : ''}
             </article>
             <SectionSeparator />

@@ -6,19 +6,21 @@ import Layout from '../components/layout'
 import { getAllPostsForHome } from '../lib/api'
 import Head from 'next/head'
 import { CMS_NAME } from '../lib/constants'
+import { useFetchUser } from '../lib/user'
 
 export default function Index({ preview, allPosts }) {
   const heroPost = allPosts[0]
   const morePosts = allPosts.slice(1)
-  
+  const { user, loading } = useFetchUser()
+    
   return (
     <>
-      <Layout preview={preview}>
+      <Layout preview={preview} user={user} loading={loading}>
         <Head>
-          <title>Have a fun! with {CMS_NAME}</title>
+          <title>Have a fun! with {user?.name}</title>
         </Head>
         <Container>
-          <Intro />
+          <Intro user={user} />
           {heroPost && (
             <HeroPost
               title={heroPost.title}
