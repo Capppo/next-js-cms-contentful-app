@@ -40,7 +40,7 @@ export default function Alert({ preview, user, loading }) {
                   (user ? (
                         <span className="inline-flex items-center justify-between w-[6rem]">
                         <a href="/api/logout">Logout</a>
-                        <img src={user.picture} className="w-[1.5rem] h-[1.5rem] hover:scale-150" ></img>
+                        <a href="/profile" ><img src={user.picture} className="w-[1.5rem] h-[1.5rem] hover:scale-150" ></img></a>
                         </span>
                   ) : (
                       <a href="/api/login">Login</a>

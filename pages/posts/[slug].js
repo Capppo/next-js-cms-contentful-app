@@ -52,9 +52,9 @@ export default function Post({ post, morePosts, preview, keyValue }) {
                 date={post.date}
                 author={post.author}
               />
-              <PostBody content={post.content} baseUrl={urlBuilder(keyValue)} userName={user?.name} />
+              <PostBody content={post.content} baseUrl={urlBuilder(keyValue)} userName={user?.name} userToken={user?.token} />
               {post.download && user?.properties?.download
-               ? <PostBody content={post.download} baseUrl={urlBuilder(keyValue)} userName={user?.name} />
+               ? <PostBody content={post.download} baseUrl={urlBuilder(keyValue)} userName={user?.name} userToken={user?.token} />
                : ''}
             </article>
             <SectionSeparator />

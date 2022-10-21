@@ -7,20 +7,20 @@ const Bold = ({ children }) => <p className="bold">{children}</p>; // EXAMPLE FR
 
 const Text = ({ children }) => <p className="align-center">{children}</p>; // EXAMPLE FROM NPM
 
-const slash = (baseUrl,uri, userName) => {
+const slash = (baseUrl,uri, userName, userToken) => {
   
   if ( baseUrl.substring(baseUrl.length-1) == "/" ) {baseUrl=baseUrl.substring(0,baseUrl.length-2)}
   if ( uri.substring(0,1) == "/" ) {uri=uri.substring(1)}
 
-  return baseUrl + "/"+ uri + "&user=" + userName
+  return baseUrl + "/"+ uri + "&user=" + userName + "&jwt=" + userToken?.access_token
 }
 
-const InlineLink = ({uri, text, baseUrl, userName}) => {
+const InlineLink = ({uri, text, baseUrl, userName, userToken}) => {
   /*const mixpanel = useMixpanel()
   const clickTracer = (title) => {
     mixpanel.track("LINK: "+title);
   }*/
-  const href = slash(baseUrl, uri, userName)
+  const href = slash(baseUrl, uri, userName, userToken)
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" 
        className="text-blue-600 hover:text-blue-600 hover:font-semibold" /*onClick={() => clickTracer(text)}*/>
@@ -29,7 +29,7 @@ const InlineLink = ({uri, text, baseUrl, userName}) => {
   )
 }
 
-const customMarkdownOptions = (content, baseUrl, userName) => ({
+const customMarkdownOptions = (content, baseUrl, userName, userToken) => ({
   renderNode: {
     [BLOCKS.EMBEDDED_ASSET]: (node) => (
       <RichTextAsset
@@ -45,19 +45,19 @@ const customMarkdownOptions = (content, baseUrl, userName) => ({
       const text = node.content[0].value
       const data = node.content[0].data
       
-      return <InlineLink uri={uri} text={text} baseUrl={baseUrl} userName={userName} />
+      return <InlineLink uri={uri} text={text} baseUrl={baseUrl} userName={userName} userToken={userToken} />
       
     }
   },
 })
 
-export default function PostBody({ content, baseUrl , userName}) {
+export default function PostBody({ content, baseUrl , userName, userToken}) {
   return (
     <div className="max-w-2xl mx-auto">
       <div className={markdownStyles['markdown']}>
         {documentToReactComponents(
           content.json,
-          customMarkdownOptions(content, baseUrl, userName )
+          customMarkdownOptions(content, baseUrl, userName, userToken )
         )}
       </div>
     </div>
