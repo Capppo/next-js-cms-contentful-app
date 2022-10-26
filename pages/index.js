@@ -3,16 +3,18 @@ import MoreStories from '../components/more-stories'
 import HeroPost from '../components/hero-post'
 import Intro from '../components/intro'
 import Layout from '../components/layout'
-import { getAllPostsForHome } from '../lib/api'
+import { getAllPostsForHome, getAllKeyValue } from '../lib/api'
 import Head from 'next/head'
 import { CMS_NAME } from '../lib/constants'
 import { useFetchUser } from '../lib/user'
+import Paginate from '../components/paginate'
 
-export default function Index({ preview, allPosts }) {
-  const heroPost = allPosts[0]
-  const morePosts = allPosts.slice(1)
+export default function Index({ preview, allPosts, firstPage, perPage, page }) {
+  const heroPost = allPosts?.items[0]
+  const morePosts = allPosts?.items.slice(1)
   const { user, loading } = useFetchUser()
-  //console.log("User:",user)  
+  
+  const paginate = {firstPage, perPage, page, totalItems: allPosts.total} 
   
   return (
     <>
@@ -33,6 +35,10 @@ export default function Index({ preview, allPosts }) {
             />
           )}
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+          {firstPage < allPosts.total
+          ? <Paginate  paginate={paginate} />
+          : ''
+          }
         </Container>
       </Layout>
     </>
@@ -40,8 +46,23 @@ export default function Index({ preview, allPosts }) {
 }
 
 export async function getStaticProps({ preview = false }) {
-  const allPosts = (await getAllPostsForHome(preview)) ?? []
+  const {firstPage, perPage} = await getPaginate()
+  const allPosts = (await getAllPostsForHome(preview,firstPage)) ?? []
   return {
-    props: { preview, allPosts },
+    props: { preview, allPosts, firstPage, perPage, page: 0 },
+  }
+}
+
+export async function getPaginate() {
+  const data = await getAllKeyValue()
+  const findKey = (el) => el.key == keyToSearch
+  let keyToSearch = "First page posts"
+  let firstPage = data[data.findIndex(findKey)]?.value
+  keyToSearch = "Post per page"
+  let perPage = data[data.findIndex(findKey)]?.value
+  console.log(firstPage,perPage)
+  return {
+    firstPage: firstPage || 1,
+    perPage: perPage || 2,
   }
 }
