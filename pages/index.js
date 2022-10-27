@@ -14,7 +14,7 @@ export default function Index({ preview, allPosts, firstPage, perPage, page }) {
   const morePosts = allPosts?.items.slice(1)
   const { user, loading } = useFetchUser()
   
-  const paginate = {firstPage, perPage, page, totalItems: allPosts.total} 
+  const paginate = {firstPage, perPage, page, totalItems: allPosts?.total} 
   
   return (
     <>
@@ -35,7 +35,7 @@ export default function Index({ preview, allPosts, firstPage, perPage, page }) {
             />
           )}
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-          {firstPage < allPosts.total
+          {firstPage < allPosts?.total
           ? <Paginate  paginate={paginate} />
           : ''
           }

@@ -12,7 +12,7 @@ export default function Page({ preview, pagePosts, firstPage, perPage, page }) {
   const morePosts = pagePosts?.items || []
   const { user, loading } = useFetchUser()
   
-  const paginate = {firstPage, perPage, page, totalItems: pagePosts.total} 
+  const paginate = {firstPage, perPage, page, totalItems: pagePosts?.total} 
   
   return (
     <>
@@ -46,7 +46,7 @@ export async function getStaticProps({ params,preview = false }) {
 export async function getStaticPaths({ preview = false }) {
   const {firstPage, perPage} = await getPaginate()
   const allPosts = await getPaginatePosts(preview, firstPage, perPage)
-  const numPages = Math.ceil((allPosts.total-allPosts.skip)/allPosts.limit)
+  const numPages = Math.ceil((allPosts?.total-allPosts?.skip)/allPosts?.limit)
   const paths = []
   let i = 0;
   do {
