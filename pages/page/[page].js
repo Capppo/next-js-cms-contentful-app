@@ -66,7 +66,7 @@ export async function getPaginate() {
   let firstPage = data[data.findIndex(findKey)]?.value
   keyToSearch = "Post per page"
   let perPage = data[data.findIndex(findKey)]?.value
-  console.log(firstPage,perPage)
+
   return {
     firstPage: firstPage || 1,
     perPage: perPage || 2,

@@ -1,0 +1,36 @@
+query {
+      postCollection(where: { slug_exists: true }, order: date_DESC, limit: 1) {
+        items {
+          slug
+          title
+          coverImage {
+            url
+          }
+          date
+          author {
+            name
+            picture {
+              url
+            }
+          }
+          excerpt
+          content {
+            json
+            links {
+              assets {
+                block {
+                  sys {
+                    id
+                  }
+                  url
+                  description
+                }
+              }
+            }
+          }
+          type
+          folderName
+        }
+      }
+    }
+    

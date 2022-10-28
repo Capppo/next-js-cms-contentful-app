@@ -22,13 +22,13 @@ export default function Paginate({paginate}) {
 
   return (
     <div className="flex justify-center text-xl md:text-2xl font-bold tracking-tight md:tracking-tighter leading-tight mb-8 mt-8 ">
-        {navigate.map(n => {
+        {navigate.map((n,i) => {
             return (
                     n.nolink
-                    ? <div className="ml-4 text-blue-600">
+                    ? <div key={i} className="ml-4 text-blue-600">
                         {n.text}
                       </div>
-                    : <Link href={n.href}>
+                    : <Link href={n.href} key={i}>
                         <a className="ml-4 hover:underline">{n.text}</a>
                       </Link> 
                     

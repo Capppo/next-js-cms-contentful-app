@@ -1,0 +1,703 @@
+{
+    "data": {
+      "postCollection": {
+        "skip": 0,
+        "limit": 2,
+        "total": 25,
+        "items": [
+          {
+            "slug": "santa-evita",
+            "title": "Santa Evita",
+            "date": "2022-10-26T00:00:00.000+02:00",
+            "folderName": "Santa Evita",
+            "download": {
+              "json": {
+                "nodeType": "document",
+                "data": {},
+                "content": [
+                  {
+                    "nodeType": "heading-3",
+                    "data": {},
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "Seson 01",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "nodeType": "paragraph",
+                    "data": {},
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "",
+                        "marks": [],
+                        "data": {}
+                      },
+                      {
+                        "nodeType": "hyperlink",
+                        "data": {
+                          "uri": "/Season 01/Santa Evita - S01E01 - Tra Leggenda E Verità ITA SPA sub Ita Spa1080p.mkv"
+                        },
+                        "content": [
+                          {
+                            "nodeType": "text",
+                            "value": "1. Tra leggenda e verità",
+                            "marks": [],
+                            "data": {}
+                          }
+                        ]
+                      },
+                      {
+                        "nodeType": "text",
+                        "value": "",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "nodeType": "paragraph",
+                    "data": {},
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "2. L'angelo nudo",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "nodeType": "paragraph",
+                    "data": {},
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "3. Evita vive",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "nodeType": "paragraph",
+                    "data": {},
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "",
+                        "marks": [],
+                        "data": {}
+                      },
+                      {
+                        "nodeType": "hyperlink",
+                        "data": {
+                          "uri": "/Season 01/Santa Evita - S01E04 - Ossessione ITA.SPA.720p.WEB-DL.DDP5.1.x264-UBi.mkv"
+                        },
+                        "content": [
+                          {
+                            "nodeType": "text",
+                            "value": "4. Ossessione",
+                            "marks": [],
+                            "data": {}
+                          }
+                        ]
+                      },
+                      {
+                        "nodeType": "text",
+                        "value": "",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "nodeType": "paragraph",
+                    "data": {},
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "5. La bambola",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "nodeType": "paragraph",
+                    "data": {},
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "",
+                        "marks": [],
+                        "data": {}
+                      },
+                      {
+                        "nodeType": "hyperlink",
+                        "data": {
+                          "uri": "/Season 01/Santa Evita - S01E06 - L.Intervista ITA.SPA.720p.WEB-DL.DDP5.1.x264-UBi.mkv"
+                        },
+                        "content": [
+                          {
+                            "nodeType": "text",
+                            "value": "6. L'intervista",
+                            "marks": [],
+                            "data": {}
+                          }
+                        ]
+                      },
+                      {
+                        "nodeType": "text",
+                        "value": "",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "nodeType": "paragraph",
+                    "data": {},
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "7. L'ultima destinazione",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "nodeType": "paragraph",
+                    "data": {},
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "nodeType": "paragraph",
+                    "data": {},
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "nodeType": "table",
+                    "data": {},
+                    "content": [
+                      {
+                        "nodeType": "table-row",
+                        "data": {},
+                        "content": [
+                          {
+                            "nodeType": "table-header-cell",
+                            "data": {},
+                            "content": [
+                              {
+                                "nodeType": "paragraph",
+                                "data": {},
+                                "content": [
+                                  {
+                                    "nodeType": "text",
+                                    "value": "N. Episodio",
+                                    "marks": [],
+                                    "data": {}
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "nodeType": "table-header-cell",
+                            "data": {},
+                            "content": [
+                              {
+                                "nodeType": "paragraph",
+                                "data": {},
+                                "content": [
+                                  {
+                                    "nodeType": "text",
+                                    "value": "Titolo",
+                                    "marks": [],
+                                    "data": {}
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "nodeType": "table-header-cell",
+                            "data": {},
+                            "content": [
+                              {
+                                "nodeType": "paragraph",
+                                "data": {},
+                                "content": [
+                                  {
+                                    "nodeType": "text",
+                                    "value": "File Name",
+                                    "marks": [],
+                                    "data": {}
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "nodeType": "table-row",
+                        "data": {},
+                        "content": [
+                          {
+                            "nodeType": "table-cell",
+                            "data": {},
+                            "content": [
+                              {
+                                "nodeType": "paragraph",
+                                "data": {},
+                                "content": [
+                                  {
+                                    "nodeType": "text",
+                                    "value": "1",
+                                    "marks": [],
+                                    "data": {}
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "nodeType": "table-cell",
+                            "data": {},
+                            "content": [
+                              {
+                                "nodeType": "paragraph",
+                                "data": {},
+                                "content": [
+                                  {
+                                    "nodeType": "text",
+                                    "value": "Tra leggenda e verità",
+                                    "marks": [],
+                                    "data": {}
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "nodeType": "table-cell",
+                            "data": {},
+                            "content": [
+                              {
+                                "nodeType": "paragraph",
+                                "data": {},
+                                "content": [
+                                  {
+                                    "nodeType": "text",
+                                    "value": "Santa Evita - S01E01 - Tra Leggenda E Verità ITA SPA sub Ita Spa1080p.mkv",
+                                    "marks": [],
+                                    "data": {}
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "nodeType": "table-row",
+                        "data": {},
+                        "content": [
+                          {
+                            "nodeType": "table-cell",
+                            "data": {},
+                            "content": [
+                              {
+                                "nodeType": "paragraph",
+                                "data": {},
+                                "content": [
+                                  {
+                                    "nodeType": "text",
+                                    "value": "4",
+                                    "marks": [],
+                                    "data": {}
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "nodeType": "table-cell",
+                            "data": {},
+                            "content": [
+                              {
+                                "nodeType": "paragraph",
+                                "data": {},
+                                "content": [
+                                  {
+                                    "nodeType": "text",
+                                    "value": "Ossessione",
+                                    "marks": [],
+                                    "data": {}
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "nodeType": "table-cell",
+                            "data": {},
+                            "content": [
+                              {
+                                "nodeType": "paragraph",
+                                "data": {},
+                                "content": [
+                                  {
+                                    "nodeType": "text",
+                                    "value": "Santa Evita - S01E04 - Ossessione ITA.SPA.720p.WEB-DL.DDP5.1.x264-UBi.mkv",
+                                    "marks": [],
+                                    "data": {}
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "nodeType": "table-row",
+                        "data": {},
+                        "content": [
+                          {
+                            "nodeType": "table-cell",
+                            "data": {},
+                            "content": [
+                              {
+                                "nodeType": "paragraph",
+                                "data": {},
+                                "content": [
+                                  {
+                                    "nodeType": "text",
+                                    "value": "6",
+                                    "marks": [],
+                                    "data": {}
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "nodeType": "table-cell",
+                            "data": {},
+                            "content": [
+                              {
+                                "nodeType": "paragraph",
+                                "data": {},
+                                "content": [
+                                  {
+                                    "nodeType": "text",
+                                    "value": "L'intervista",
+                                    "marks": [],
+                                    "data": {}
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "nodeType": "table-cell",
+                            "data": {},
+                            "content": [
+                              {
+                                "nodeType": "paragraph",
+                                "data": {},
+                                "content": [
+                                  {
+                                    "nodeType": "text",
+                                    "value": "Santa Evita - S01E06 - L.Intervista ITA.SPA.720p.WEB-DL.DDP5.1.x264-UBi.mkv",
+                                    "marks": [],
+                                    "data": {}
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "nodeType": "paragraph",
+                    "data": {},
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ]
+                  }
+                ]
+              },
+              "links": {
+                "assets": {
+                  "block": []
+                }
+              }
+            }
+          },
+          {
+            "slug": "munich-games",
+            "title": "Munich Games",
+            "date": "2022-10-25T00:00:00.000+02:00",
+            "folderName": "Munich Games",
+            "download": {
+              "json": {
+                "data": {},
+                "content": [
+                  {
+                    "data": {},
+                    "content": [
+                      {
+                        "data": {},
+                        "marks": [],
+                        "value": "Season 01",
+                        "nodeType": "text"
+                      }
+                    ],
+                    "nodeType": "heading-3"
+                  },
+                  {
+                    "data": {},
+                    "content": [
+                      {
+                        "data": {},
+                        "marks": [],
+                        "value": "(3 GB episodi 1-4, 0.5 GB episodi 5-6)",
+                        "nodeType": "text"
+                      }
+                    ],
+                    "nodeType": "paragraph"
+                  },
+                  {
+                    "data": {},
+                    "content": [
+                      {
+                        "data": {},
+                        "marks": [],
+                        "value": "",
+                        "nodeType": "text"
+                      },
+                      {
+                        "data": {
+                          "uri": "/Season 01/Munich.Games.2022.S01.E01.1080p.HDTV.AC3.iTALiAN.H264-SpyRo.mkv"
+                        },
+                        "content": [
+                          {
+                            "data": {},
+                            "marks": [],
+                            "value": "1. The Threat",
+                            "nodeType": "text"
+                          }
+                        ],
+                        "nodeType": "hyperlink"
+                      },
+                      {
+                        "data": {},
+                        "marks": [],
+                        "value": "",
+                        "nodeType": "text"
+                      }
+                    ],
+                    "nodeType": "paragraph"
+                  },
+                  {
+                    "data": {},
+                    "content": [
+                      {
+                        "data": {},
+                        "marks": [],
+                        "value": "",
+                        "nodeType": "text"
+                      },
+                      {
+                        "data": {
+                          "uri": "/Season 01/Munich.Games.2022.S01.E02.1080p.HDTV.AC3.iTALiAN.H264-SpyRo.mkv"
+                        },
+                        "content": [
+                          {
+                            "data": {},
+                            "marks": [],
+                            "value": "2. Munich Games",
+                            "nodeType": "text"
+                          }
+                        ],
+                        "nodeType": "hyperlink"
+                      },
+                      {
+                        "data": {},
+                        "marks": [],
+                        "value": "",
+                        "nodeType": "text"
+                      }
+                    ],
+                    "nodeType": "paragraph"
+                  },
+                  {
+                    "data": {},
+                    "content": [
+                      {
+                        "data": {},
+                        "marks": [],
+                        "value": "",
+                        "nodeType": "text"
+                      },
+                      {
+                        "data": {
+                          "uri": "/Season 01/Munich.Games.2022.S01.E03.1080p.HDTV.AC3.iTALiAN.H264-SpyRo.mkv"
+                        },
+                        "content": [
+                          {
+                            "data": {},
+                            "marks": [],
+                            "value": "3. Payday",
+                            "nodeType": "text"
+                          }
+                        ],
+                        "nodeType": "hyperlink"
+                      },
+                      {
+                        "data": {},
+                        "marks": [],
+                        "value": "",
+                        "nodeType": "text"
+                      }
+                    ],
+                    "nodeType": "paragraph"
+                  },
+                  {
+                    "data": {},
+                    "content": [
+                      {
+                        "data": {},
+                        "marks": [],
+                        "value": "",
+                        "nodeType": "text"
+                      },
+                      {
+                        "data": {
+                          "uri": "/Season 01/Munich.Games.2022.S01.E04.1080p.HDTV.AC3.iTALiAN.H264-SpyRo.mkv"
+                        },
+                        "content": [
+                          {
+                            "data": {},
+                            "marks": [],
+                            "value": "4. Derailment",
+                            "nodeType": "text"
+                          }
+                        ],
+                        "nodeType": "hyperlink"
+                      },
+                      {
+                        "data": {},
+                        "marks": [],
+                        "value": "",
+                        "nodeType": "text"
+                      }
+                    ],
+                    "nodeType": "paragraph"
+                  },
+                  {
+                    "data": {},
+                    "content": [
+                      {
+                        "data": {},
+                        "marks": [],
+                        "value": "",
+                        "nodeType": "text"
+                      },
+                      {
+                        "data": {
+                          "uri": "/Season 01/Munich.Games.2022.S01.E05.720p.HDTV.AC3.iTALiAN.H264-SpyRo.mp4"
+                        },
+                        "content": [
+                          {
+                            "data": {},
+                            "marks": [],
+                            "value": "5. The Game",
+                            "nodeType": "text"
+                          }
+                        ],
+                        "nodeType": "hyperlink"
+                      },
+                      {
+                        "data": {},
+                        "marks": [],
+                        "value": "",
+                        "nodeType": "text"
+                      }
+                    ],
+                    "nodeType": "paragraph"
+                  },
+                  {
+                    "data": {},
+                    "content": [
+                      {
+                        "data": {},
+                        "marks": [],
+                        "value": "",
+                        "nodeType": "text"
+                      },
+                      {
+                        "data": {
+                          "uri": "/Season 01/Munich.Games.2022.S01.E06 HDTV AC3 iTALiAN H264 SpyRo.avi"
+                        },
+                        "content": [
+                          {
+                            "data": {},
+                            "marks": [],
+                            "value": "6. Blackout",
+                            "nodeType": "text"
+                          }
+                        ],
+                        "nodeType": "hyperlink"
+                      },
+                      {
+                        "data": {},
+                        "marks": [],
+                        "value": "",
+                        "nodeType": "text"
+                      }
+                    ],
+                    "nodeType": "paragraph"
+                  }
+                ],
+                "nodeType": "document"
+              },
+              "links": {
+                "assets": {
+                  "block": []
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }

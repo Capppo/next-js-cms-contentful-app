@@ -10,6 +10,7 @@ import SectionSeparator from '../../components/section-separator'
 import Layout from '../../components/layout'
 import { getAllPostsWithSlug, getPostAndMorePosts, getAllKeyValue } from '../../lib/api'
 import PostTitle from '../../components/post-title'
+import PostSeason from '../../components/post-season'
 import { CMS_NAME } from '../../lib/constants'
 import { useFetchUser } from '../../lib/user'
 
@@ -30,6 +31,7 @@ export default function Post({ post, morePosts, preview, keyValue }) {
     return baseUrl
   }
   
+  const baseUrl = urlBuilder(keyValue)
 
   return (
     <Layout preview={preview} user={user} loading={loading}>
@@ -52,10 +54,13 @@ export default function Post({ post, morePosts, preview, keyValue }) {
                 date={post.date}
                 author={post.author}
               />
-              <PostBody content={post.content} baseUrl={urlBuilder(keyValue)} userName={user?.name} userToken={user?.token} />
+              <PostBody content={post.content} baseUrl={baseUrl} userName={user?.name} userToken={user?.token} />
               {post.download && user?.properties?.download
-               ? <PostBody content={post.download} baseUrl={urlBuilder(keyValue)} userName={user?.name} userToken={user?.token} />
-               : ''}
+                ? <PostBody content={post.download} baseUrl={baseUrl} userName={user?.name} userToken={user?.token} />
+                : ''}
+              {post?.seasonsCollection?.items.length > 0 && user?.properties?.download
+                ? <PostSeason content={post?.seasonsCollection?.items } baseUrl={baseUrl} userName={user?.name} userToken={user?.token} />
+                : ''}
             </article>
             <SectionSeparator />
             {morePosts && morePosts.length > 0 && (
