@@ -24,11 +24,13 @@ export default function Post({ post, morePosts, preview, keyValue }) {
   const { user, loading } = useFetchUser()
 
   const urlBuilder = (keyValue) => {
-    const found = keyValue.find(element => element.key == post.type);
-    let baseUrl = found.value
-    if ( baseUrl.substring(baseUrl.length-1) == "/" ) {baseUrl=baseUrl.substring(0,baseUrl.length-2)}
-    if (post.folderName) {baseUrl = baseUrl+"/"+post.folderName}
-    return baseUrl
+    if (keyValue) {
+      const found = keyValue.find(element => element.key == post.type);
+      let baseUrl = found.value
+      if ( baseUrl.substring(baseUrl.length-1) == "/" ) {baseUrl=baseUrl.substring(0,baseUrl.length-2)}
+      if (post.folderName) {baseUrl = baseUrl+"/"+post.folderName}
+      return baseUrl
+    } else return ''
   }
   
   const baseUrl = urlBuilder(keyValue)

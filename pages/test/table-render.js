@@ -13,7 +13,7 @@ const options = {
   }
 
 const BuildLink =({content}) => {
-  console.log("Num rows: ", content.length)
+
     const links = []
     content?.map((row,ir) => {
       const linkFields = []
@@ -26,7 +26,7 @@ const BuildLink =({content}) => {
     })
     if (links[0].length == 0) {links.splice(0,1)}
     
-  console.log("Links:", links)
+
     return (
       <>
       {links.map((l,i) => {
