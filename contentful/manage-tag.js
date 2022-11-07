@@ -1,7 +1,9 @@
 var contentful = require('contentful-management')
+require('dotenv').config({ path: '.env.local' })
+
 var client = contentful.createClient({
   // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
-  accessToken: 'CFPAT-g1VnuuIPDtq7Feh5Z8AKUqlcvv1YSOuRGUNGas-RW9A',
+  accessToken: process.env.CONTENTFUL_CONTENT_MANAGEMENT,
 })
 
 var tagGroups = ['Genre', 'Year']
@@ -41,9 +43,9 @@ async function run() {
           console.log(item.fields.key, item.fields.value, item.sys.id) //
           environment.getEntry(item.sys.id)
           .then(entry => {
-           entry.delete()
+           //entry.delete()
           })
-          .then(() => console.log(item.sys.id,`Entry deleted.`))
+          //.then(() => console.log(item.sys.id,`Entry deleted.`))
           .catch("Error deleting entry", console.error)                //
         }
       })
@@ -56,11 +58,11 @@ async function run() {
     let index= 0
     entries.items.map ((item) => {
       if (item.name.includes('Genre')) {
-        createEntry(environment,item.name,colors[index])
+        //createEntry(environment,item.name,colors[index])
         index++
       }
       if (item.name.includes('Year')) {
-        createEntry(environment,item.name,'stone')
+        //createEntry(environment,item.name,'stone')
       }
     })
     
