@@ -9,12 +9,12 @@ import { CMS_NAME } from '../lib/constants'
 import { useFetchUser } from '../lib/user'
 import Paginate from '../components/paginate'
 
-export default function Index({ preview, allPosts, firstPage, perPage, page }) {
+export default function Index({ preview, allPosts, firstPage, perPage, page, colors }) {
   const heroPost = allPosts?.items[0]
   const morePosts = allPosts?.items.slice(1)
   const { user, loading } = useFetchUser()
   
-  const paginate = {firstPage, perPage, page, totalItems: allPosts?.total} 
+  const paginate = {firstPage, perPage, page, totalItems: allPosts?.total, path: '/page'} 
   
   return (
     <>
@@ -32,9 +32,11 @@ export default function Index({ preview, allPosts, firstPage, perPage, page }) {
               author={heroPost.author}
               slug={heroPost.slug}
               excerpt={heroPost.excerpt}
+              tagList={heroPost.contentfulMetadata?.tags}
+              tagColors={colors}
             />
           )}
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+          {morePosts.length > 0 && <MoreStories posts={morePosts} tagColors={colors} />}
           {firstPage < allPosts?.total
           ? <Paginate  paginate={paginate} />
           : ''
@@ -46,23 +48,32 @@ export default function Index({ preview, allPosts, firstPage, perPage, page }) {
 }
 
 export async function getStaticProps({ preview = false }) {
-  const {firstPage, perPage} = await getPaginate()
+  const {firstPage, perPage, colors} = await getPaginate()
   const allPosts = (await getAllPostsForHome(preview,firstPage)) ?? []
   return {
-    props: { preview, allPosts, firstPage, perPage, page: 0 },
+    props: { preview, allPosts, firstPage, perPage, page: 0 , colors},
   }
 }
 
 export async function getPaginate() {
+  let colors = []
   const data = await getAllKeyValue()
   const findKey = (el) => el.key == keyToSearch
   let keyToSearch = "First page posts"
   let firstPage = data[data.findIndex(findKey)]?.value
   keyToSearch = "Post per page"
   let perPage = data[data.findIndex(findKey)]?.value
-  console.log(firstPage,perPage)
+  keyToSearch = "Tag groups"
+  let tagGroups = data[data.findIndex(findKey)]?.value.split(',')
+  data.map(el => {
+    tagGroups.map(g => {
+      if (el.key.includes(g.trim())) {colors.push({tag: el.key, className: el.value})}
+    })
+  })
+  
   return {
     firstPage: firstPage || 1,
     perPage: perPage || 2,
+    colors: colors
   }
 }

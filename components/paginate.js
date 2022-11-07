@@ -1,24 +1,39 @@
-import { COOKIE_NAME_PRERENDER_BYPASS } from 'next/dist/server/api-utils'
 import Link from 'next/link'
 
-const enumerate = (navigate, page, last) => {
+const enumerate = (navigate, path, filter,page, last) => {
   let i= 0
   do {
     i++
-    navigate.push({text: i, href: `/page/${i}`, nolink: i == page ? true:false})
+    navigate.push({text: i, href: href(path,i,filter), nolink: i == page ? true:false})
   }
   while (i < last)
 }
 
+const href = (path,page,filter) => {
+  switch (path) {
+    case '/page' :
+      return path+'/'+page
+    case '/filter' :
+      if (filter?.length > 0) {
+        let tagList = filter.map((t) => {return t.id})
+        return path+'?page='+page+'&tags='+tagList?.join(',')
+      } else {
+        return '/'
+      }      
+    default:
+      return '/'
+  }
+}
+
 export default function Paginate({paginate}) {
-    const {firstPage, perPage, page, totalItems} = paginate
+    const {firstPage, perPage, page, totalItems, path, filter} = paginate
     const last = Math.ceil((totalItems-firstPage)/perPage)
     let navigate = []
     if (page != 0) {navigate.push({text: "First", href: "/"})}
-    if (page > 1) {navigate.push({text: "Prev", href: `/page/${Number(page)-1}`})}
-    enumerate(navigate, page, last)
-    if (Number(page)+1 < last) {navigate.push({text: "Next", href: `/page/${Number(page)+1}`})}
-    if (page < last) {navigate.push({text: "Last", href: `/page/${last}`})}
+    if (Number(page)-1  > 1) {navigate.push({text: "Prev", href: href(path,Number(page)-1,filter)})}
+    enumerate(navigate, path, filter, page, last)
+    if (Number(page)+1 < last) {navigate.push({text: "Next", href: href(path,Number(page)+1, filter)})}
+    if (page < last) {navigate.push({text: "Last", href: href(path,last,filter)})}
 
   return (
     <div className="flex justify-center text-xl md:text-2xl font-bold tracking-tight md:tracking-tighter leading-tight mb-8 mt-8 ">

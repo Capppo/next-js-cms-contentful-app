@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Avatar from '../components/avatar'
 import DateComponent from '../components/date'
 import CoverImage from './cover-image'
+import Tags from '../components/tags'
 
 export default function PostPreview({
   title,
@@ -11,6 +12,8 @@ export default function PostPreview({
   author,
   slug,
   type,
+  tagList,
+  tagColors
 }) {
   return (
     <div>
@@ -27,6 +30,7 @@ export default function PostPreview({
         <DateComponent dateString={date} />
       </div>
       <p className="text-lg leading-relaxed mb-4">{excerpt}</p>
+      {tagList && <Tags list={tagList} colors={tagColors} />}
       {author && <Avatar name={author.name} picture={author.picture} />}
     </div>
   )

@@ -4,6 +4,7 @@ module.exports = {
     "./node_modules/flowbite-react/**/*.js",
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
+    './safelist.txt',
   ],
   theme: {
     extend: {
@@ -36,6 +37,14 @@ module.exports = {
     },
   },
   plugins: [
-    require("flowbite/plugin")
+    require("flowbite/plugin"),
+    require('tailwind-safelist-generator')({
+      patterns: [
+        'text-{colors}',
+        'bg-{colors}',
+        'border-{borderWidth}',
+        'border-{colors}',
+      ],
+    }),
   ],
 }
