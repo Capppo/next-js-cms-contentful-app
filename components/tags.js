@@ -1,16 +1,17 @@
 import { useRouter } from 'next/router'
 
+const APP_TAG_DEFAULT_KEY_VALUE = process.env.APP_TAG_DEFAULT_KEY_VALUE
 
 
 export default function Tags({ list, colors, switchList}) {
 
   const router = useRouter()
-
+  let colorDefault = colors?.find(el => el.tag == APP_TAG_DEFAULT_KEY_VALUE)?.className
   let tagList = []
   list.map(tag => {
     let tagValue = tag.name.split(':')
     let color = colors?.find(el => el.tag == tag.name)?.className
-    tagList.push({id: tag.id, name: tagValue[tagValue.length-1].trim(), color: color ? color:'' })
+    tagList.push({id: tag.id, name: tagValue[tagValue.length-1].trim(), color: color ? color:colorDefault })
   })
   
   const handleClick = (e) => {
