@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
+import {APP_TAG_DEFAULT_KEY_VALUE} from '@lib/constants'
 
-const APP_TAG_DEFAULT_KEY_VALUE = process.env.APP_TAG_DEFAULT_KEY_VALUE
+//const APP_TAG_DEFAULT_KEY_VALUE = process.env.APP_TAG_DEFAULT_KEY_VALUE
 
 
 export default function Tags({ list, colors, switchList}) {
