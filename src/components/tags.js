@@ -24,12 +24,12 @@ export default function Tags({ list, colors, switchList}) {
   }
 
   return (
-    <div className="flex flex-row justify-start mb-4">
+    <div className="flex flex-row flex-wrap justify-start mb-2 ">
       {tagList.map((tag,index) => {
         return (
           <span  key={tag.name+index}       
               href={tag.id}
-              className={`rounded-full ${tag.color} mr-4 px-2 py-1 font-semibold hover:underline`} 
+              className={`rounded-full ${tag.color} mr-4 mb-2 px-2 py-1 max-h-8 font-semibold hover:underline`} 
               onClick={(e) => handleClick(e)} >
               {tag.name.charAt(0).toUpperCase() + tag.name.slice(1)}
           </span>
