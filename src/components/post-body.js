@@ -41,6 +41,39 @@ const InlineLink = ({uri, text, baseUrl, userName, userToken}) => {
   )
 }
 
+const InlineVimeo = ({uri, text}) => {
+  var src = ''
+
+  let arr = uri.split('/')
+  src = arr[arr.length-1]
+
+ return (
+  <p class="iframe-container">
+    <iframe title={text} src={process.env.REACT_APP_VIMEO_EMBED_PATH + src} width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+  </p>
+)
+}
+
+const InlineYoutube = ({uri, text}) => {
+  var src = ''
+  if (uri.includes("youtu.be")) {
+    let arr = uri.split('/')
+    src = arr[arr.length-1]
+  }
+
+  if (uri.includes("youtube.com/watch")) {
+    uri=uri+'&'
+    let u1 = uri.substr(uri.lastIndexOf('v=')+2)
+    src = u1.substr(0,u1.indexOf('&'))
+  }
+
+  return (
+    <p class="iframe-container">
+      <iframe title={text} src={"https://www.youtube.com/embed/" + src} width="640" height="360"  allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" frameBorder="0" allowFullScreen></iframe>
+    </p>
+  )
+}
+
 const addExtention = (file) => {
   if (!file) return ''
  const index = FILE_EXTENTIONS.findIndex(el => {
@@ -107,8 +140,24 @@ const customMarkdownOptions = (content, baseUrl, userName, userToken) => ({
       const { uri} = node.data;
       const text = node.content[0].value
       const data = node.content[0].data
+
+      let isVideoLink = false
+      if (uri.includes("player.vimeo.com/video") || uri.includes("vimeo.com")) {
+        isVideoLink = true
+        return <InlineVimeo uri={uri} text={text} />
+      }
+      if (uri.includes("youtube.com/watch") || uri.includes("youtu.be")) {
+        isVideoLink = true
+        return <InlineYoutube uri={uri} text={text} />
+      }
+      if (!isVideoLink) {
+        //this is to rendere external link as like embedded, but the info must to be previously fetched
+        if (text.indexOf(">") === 0) 
+              { return <EmbeddedExternalEntry uri={uri} text={text.substr(1)} data={data} /> }
+        else  {return <InlineLink uri={uri} text={text} baseUrl={baseUrl} userName={userName} userToken={userToken} />}
+      }
       
-      return <InlineLink uri={uri} text={text} baseUrl={baseUrl} userName={userName} userToken={userToken} />
+      
       
     },
     [BLOCKS.TABLE]: node => {

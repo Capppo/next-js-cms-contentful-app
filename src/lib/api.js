@@ -213,11 +213,24 @@ export async function getPostAndMorePosts(slug, preview) {
     }`,
     preview
   )
-  const entries = await fetchGraphQL(
+  const post= extractPost(entry)
+  const entryNext = await fetchGraphQL(
     `query {
-      postCollection(where: { slug_not_in: "${slug}" }, order: date_DESC, preview: ${
+      postCollection(where: { date_lt: "${post.date}" }, order: date_DESC, preview: ${
       preview ? 'true' : 'false'
-    }, limit: 2) {
+    }, limit: 1) {
+        items {
+          ${POST_GRAPHQL_FIELDS}
+        }
+      }
+    }`,
+    preview
+  )
+  const entryPrev = await fetchGraphQL(
+    `query {
+      postCollection(where: { date_gt: "${post.date}" }, order: date_ASC, preview: ${
+      preview ? 'true' : 'false'
+    }, limit: 1) {
         items {
           ${POST_GRAPHQL_FIELDS}
         }
@@ -226,8 +239,8 @@ export async function getPostAndMorePosts(slug, preview) {
     preview
   )
   return {
-    post: extractPost(entry),
-    morePosts: extractPostEntries(entries),
+    post,
+    morePosts: [extractPost(entryPrev) ? extractPost(entryPrev):post,extractPost(entryNext) ? extractPost(entryNext):post],
   }
 }
 

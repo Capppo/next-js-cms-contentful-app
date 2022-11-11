@@ -43,14 +43,14 @@ export default function Post({ post, morePosts, preview, type, colors, alert }) 
   const baseUrl = urlBuilder(type)
 
   return (
-    <Layout preview={preview} user={user} loading={loading} alertIn={alertIn(post)} alertOut={alert ? alert['Alert: unlogged']:''} >
+    <Layout preview={preview} user={user} loading={loading} alertIn={alertIn(post)} alertOut={alert ? alert['Alert: post unlogged']:''} >
       <Container>
         <Header />
         {router.isFallback ? (
           <PostTitle>Loading…</PostTitle>
         ) : (
           <>
-            <article>
+            <article className="mb-16">
               <Head>
                 <title>
                   {post.title} | Next.js Blog Example with {CMS_NAME}
