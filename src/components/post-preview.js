@@ -21,7 +21,10 @@ export default function PostPreview({
         <Link href={`/posts/${slug}`}>
           <a className="hover:underline">{title}</a>
         </Link>
-        <span className="text-xl ">{type}</span>
+        <Link href={`/type/${type}`}>
+          <a className="text-xl hover:underline">{type}</a>
+        </Link>
+        
       </div>
       <div className="text-lg mb-4">
         <DateComponent dateString={date} />

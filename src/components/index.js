@@ -15,6 +15,8 @@ import MoreStories from '@components/more-stories'
 import Paginate from '@components/paginate'
 import PostBody from '@components/post-body'
 import PostHeader from '@components/post-header'
+import PostItem from '@components/post-item'
+import PostList from '@components/post-list'
 import PostPreview from '@components/post-preview'
 import PostSeason from '@components/post-season'
 import PostTitle from '@components/post-title'
@@ -47,6 +49,8 @@ export  {
     Paginate,
     PostBody,
     PostHeader,
+    PostItem,
+    PostList,
     PostPreview,
     PostSeason,
     PostTitle,

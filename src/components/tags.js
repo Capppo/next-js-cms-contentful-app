@@ -7,12 +7,11 @@ import {APP_TAG_DEFAULT_KEY_VALUE} from '@lib/constants'
 export default function Tags({ list, colors, switchList}) {
 
   const router = useRouter()
-  let colorDefault = colors?.find(el => el.tag == APP_TAG_DEFAULT_KEY_VALUE)?.className
+  let colorDefault = colors[APP_TAG_DEFAULT_KEY_VALUE]
   let tagList = []
   list.map(tag => {
     let tagValue = tag.name.split(':')
-    let color = colors?.find(el => el.tag == tag.name)?.className
-    tagList.push({id: tag.id, name: tagValue[tagValue.length-1].trim(), color: color ? color:colorDefault })
+    tagList.push({id: tag.id, name: tagValue[tagValue.length-1].trim(), color: colors[tag.name] ? colors[tag.name] :colorDefault })
   })
   
   const handleClick = (e) => {
@@ -25,12 +24,12 @@ export default function Tags({ list, colors, switchList}) {
   }
 
   return (
-    <div className="flex flex-row flex-wrap justify-start mb-2 ">
+    <div className="flex flex-row flex-wrap justify-start">
       {tagList.map((tag,index) => {
         return (
           <span  key={tag.name+index}       
               href={tag.id}
-              className={`rounded-full ${tag.color} mr-4 mb-2 px-2 py-1 max-h-8 font-semibold hover:underline`} 
+              className={`rounded-full ${tag.color} mr-4 mt-2 mb-2 px-2 py-1 max-h-8 font-semibold hover:underline `} 
               onClick={(e) => handleClick(e)} >
               {tag.name.charAt(0).toUpperCase() + tag.name.slice(1)}
           </span>

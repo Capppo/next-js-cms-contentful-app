@@ -3,11 +3,13 @@ import Head from 'next/head'
 import ErrorPage from 'next/error'
 import {Container, PostBody, MoreStories, Header, PostHeader} from '@components/index'
 import {SectionSeparator, Layout, PostTitle, PostSeason} from '@components/index'
-import { getAllPostsWithSlug, getPostAndMorePosts, getAllKeyValue } from '@lib/api'
-import { CMS_NAME } from '@lib/constants'
+import { getAllPostsWithSlug, getPostAndMorePosts } from '@lib/api'
+import { getAppParams } from '@lib/api2'
+import { CMS_NAME, APP_GENRE_COMING_SOON_ID } from '@lib/constants'
 import { useFetchUser } from '@lib/user'
 
-export default function Post({ post, morePosts, preview, keyValue, colors }) {
+
+export default function Post({ post, morePosts, preview, type, colors, alert }) {
   const router = useRouter()
 
   if (!router.isFallback && !post) {
@@ -16,20 +18,32 @@ export default function Post({ post, morePosts, preview, keyValue, colors }) {
 
   const { user, loading } = useFetchUser()
 
-  const urlBuilder = (keyValue) => {
-    if (keyValue) {
-      const found = keyValue.find(element => element.key == post.type);
-      let baseUrl = found.value
+  const urlBuilder = (type) => {
+    if (type) {
+      let baseUrl = type['Type: '+post.type]
       if ( baseUrl.substring(baseUrl.length-1) == "/" ) {baseUrl=baseUrl.substring(0,baseUrl.length-2)}
       if (post.folderName) {baseUrl = baseUrl+"/"+post.folderName}
       return baseUrl
     } else return ''
   }
+
+  const isComingSoon = (post) => {
+    let isTrue= false
+    post?.contentfulMetadata?.tags.map(t => {
+      if(t.id == APP_GENRE_COMING_SOON_ID) {isTrue=true}
+    })
+    return isTrue
+  }
+
+  const alertIn = (post) => {
+    if (!alert) {return ""}
+    return isComingSoon(post) ? alert['Alert: coming soon']: alert['Alert: post'] ? alert['Alert: post']:''
+  }
   
-  const baseUrl = urlBuilder(keyValue)
+  const baseUrl = urlBuilder(type)
 
   return (
-    <Layout preview={preview} user={user} loading={loading}>
+    <Layout preview={preview} user={user} loading={loading} alertIn={alertIn(post)} alertOut={alert ? alert['Alert: unlogged']:''} >
       <Container>
         <Header />
         {router.isFallback ? (
@@ -69,25 +83,18 @@ export default function Post({ post, morePosts, preview, keyValue, colors }) {
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  let colors = []
-  const findKey = (el) => el.key == keyToSearch
+
   const data = await getPostAndMorePosts(params.slug, preview)
-  const data2 = await getAllKeyValue()
-  const keyToSearch = "Tag groups"
-  let tagGroups = data2[data2.findIndex(findKey)]?.value.split(',')
-  data2.map(el => {
-    tagGroups.map(g => {
-      if (el.key.includes(g.trim())) {colors.push({tag: el.key, className: el.value})}
-    })
-  })
+  const {colors, alert, type} = await getAppParams()
 
   return {
     props: {
       preview,
       post: data?.post ?? null,
       morePosts: data?.morePosts ?? null,
-      keyValue: data2,
-      colors: colors
+      type,
+      colors,
+      alert 
     },
   }
 }

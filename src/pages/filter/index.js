@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import {Container, FilterList, Intro, Layout, MoreStories, Paginate} from '@components/index'
 import { getFilteredPosts, getAllKeyValue } from '@lib/api'
+import { getAppParams } from '@lib/api2'
 import { useFetchUser } from '@lib/user'
 
 const aggregateTag = (morePosts, filter) => {
@@ -55,34 +56,11 @@ export async function getServerSideProps(context) {
   const filter = context.query.tags ? context.query.tags.split(","):[]
   const preview = context.query.preview ? true:false
   const page = context.query.page ?? 1
-  const { perPage, colors} = await getPaginate()
+  const {perPage, colors, alert} = await getAppParams()
   const firstPage = 0
   const skip = Number(perPage)*(page-1)
   const pagePosts = (await getFilteredPosts(preview, skip, perPage, filter)) ?? []
   return {
-    props: { preview, pagePosts, firstPage, perPage, page: page, filter, colors},
-  }
-}
-
-export async function getPaginate() {
-  let colors = []
-  const data = await getAllKeyValue()
-  const findKey = (el) => el.key == keyToSearch
-  let keyToSearch = "First page posts"
-  let firstPage = data[data.findIndex(findKey)]?.value
-  keyToSearch = "Post per page"
-  let perPage = data[data.findIndex(findKey)]?.value
-  keyToSearch = "Tag groups"
-  let tagGroups = data[data.findIndex(findKey)]?.value.split(',')
-  data.map(el => {
-    tagGroups.map(g => {
-      if (el.key.includes(g.trim())) {colors.push({tag: el.key, className: el.value})}
-    })
-  })
-  
-  return {
-    firstPage: firstPage || 1,
-    perPage: perPage || 2,
-    colors: colors
+    props: { preview, pagePosts, firstPage, perPage, page: page, filter, colors, alert},
   }
 }

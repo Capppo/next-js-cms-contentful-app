@@ -1,0 +1,42 @@
+keyValue= {
+    Alert: {
+      'Alert: coming soon': '...this download will coming soon, stay tuned!',
+      'Alert: unlogged': 'Click on colored tag to filter and then on left top tag to filter deeper',
+      'Alert: logged': 'click on your icon or name to see the profile page',
+      'Alert: post': '...stay tuned, more wonderful stories are coming!',
+      'Alert: profile': 'stay tuned, more statistics are coming ...'
+    },
+    Tags: {
+      'Genre: war': 'bg-yellow-500 border-yellow-600 border',
+      'Genre: action': ' bg-rose-300 border-rose-400 border',
+      'Genre: comedy': ' bg-fuchsia-300 border-fuchsia-400 border',
+      'Genre: experimental': ' bg-indigo-300 border-indigo-400 border',
+      'Genre: science fiction': ' bg-green-300 border-green-400 border',
+      'Genre: thriller': ' bg-lime-300 border-lime-400 border',
+      'Genre: western': ' bg-yellow-300 border-yellow-400 border',
+      'Genre: crime': ' bg-purple-300 border-purple-400 border',
+      'Genre: animation': ' bg-pink-300 border-pink-400 border',
+      'Genre: fantasy': ' bg-blue-300 border-blue-400 border',
+      'Genre: true story': ' bg-red-300 border-red-400 border',
+      'Genre: biopic': ' bg-orange-300 border-orange-400 border',
+      'Genre: romance': ' bg-emerald-300 border-emerald-400 border',
+      'Genre: drama': ' bg-violet-300 border-violet-400 border',
+      'Genre: adventure': ' bg-amber-300 border-amber-400 border',
+      'Genre: horror': ' bg-teal-300 border-teal-400 border',
+      'Genre: historical': ' bg-sky-300 border-sky-400 border',
+      'Year: default': ' bg-slate-100 border-slate-200 border',
+      'Year: 2019': ' bg-stone-300 border-stone-400 border',
+      'Year: 2018': ' bg-stone-300 border-stone-400 border',
+      'Year: 2021': ' bg-stone-300 border-stone-400 border',
+      'Year: 2023': ' bg-stone-300 border-stone-400 border',
+      'Year: 2022': ' bg-stone-300 border-stone-400 border',
+      'Year: 2020': ' bg-stone-300 border-stone-400 border',
+      'Year: 2017': ' bg-stone-300 border-stone-400 border'
+    },
+    Paging: { 'Paging: First page posts': '9', 'Paging: Post per page': '8' },
+    Profile: {},
+    Type: {
+      'Type: Movie': 'https://home.alycante.it/file?name=/Movie',
+      'Type: Series': 'https://home.alycante.it/file?name=/Series'
+    }
+  }

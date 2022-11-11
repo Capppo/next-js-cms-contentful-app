@@ -2,7 +2,8 @@ import {Container} from '@components/index'
 import cn from 'classnames'
 import { EXAMPLE_PATH } from '../lib/constants'
 
-export default function Alert({ preview, user, loading }) {
+export default function Alert({ preview, user, loading, alertIn, alertOut }) {
+
   return (
     <div
       className={cn('border-b', {
@@ -35,15 +36,20 @@ export default function Alert({ preview, user, loading }) {
               </a>
               .
               */}
-              More features available soon, stay tuned!!! &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 {!loading &&
                   (user ? (
+                      <>
+                        <span>{alertIn} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
                         <span className="inline-flex items-center justify-between w-[6rem]">
-                        <a href="/api/logout">Logout</a>
-                        <a href="/profile" ><img src={user.picture} className="w-[1.5rem] h-[1.5rem] hover:scale-150" ></img></a>
+                          <a href="/api/logout">Logout</a>
+                          <a href="/profile" ><img src={user.picture} className="w-[1.5rem] h-[1.5rem] hover:scale-150" ></img></a>
                         </span>
+                      </>
                   ) : (
-                      <a href="/api/login">Login</a>
+                      <>
+                        <span>{alertOut} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
+                        <a href="/api/login">Login</a>
+                      </>
               ))}
             </>
           )}

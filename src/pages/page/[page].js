@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import {Container, Intro, Layout, MoreStories, Paginate} from '@components/index'
-import { getPaginatePosts, getAllKeyValue } from '@lib/api'
+import { getPaginatePosts } from '@lib/api'
+import { getAppParams } from '@lib/api2'
 import { useFetchUser } from '@lib/user'
 
 export default function Page({ preview, pagePosts, firstPage, perPage, page, colors }) {
@@ -31,16 +32,16 @@ export default function Page({ preview, pagePosts, firstPage, perPage, page, col
 }
 
 export async function getStaticProps({ params,preview = false }) {
-  const {firstPage, perPage, colors} = await getPaginate()
+  const {firstPage, perPage, colors, alert} = await getAppParams()
   const skip = Number(firstPage)+Number(perPage)*(params.page-1)
   const pagePosts = (await getPaginatePosts(preview, skip, perPage)) ?? []
   return {
-    props: { preview, pagePosts, firstPage, perPage, page: params.page, colors },
+    props: { preview, pagePosts, firstPage, perPage, page: params.page, colors, alert },
   }
 }
 
 export async function getStaticPaths({ preview = false }) {
-  const {firstPage, perPage} = await getPaginate()
+  const {firstPage, perPage} = await getAppParams()
   const allPosts = await getPaginatePosts(preview, firstPage, perPage)
   const numPages = Math.ceil((allPosts?.total-allPosts?.skip)/allPosts?.limit)
   const paths = []
@@ -52,28 +53,5 @@ export async function getStaticPaths({ preview = false }) {
   return {
     paths: paths,
     fallback: true,
-  }
-}
-
-export async function getPaginate() {
-  let colors = []
-  const data = await getAllKeyValue()
-  const findKey = (el) => el.key == keyToSearch
-  let keyToSearch = "First page posts"
-  let firstPage = data[data.findIndex(findKey)]?.value
-  keyToSearch = "Post per page"
-  let perPage = data[data.findIndex(findKey)]?.value
-  keyToSearch = "Tag groups"
-  let tagGroups = data[data.findIndex(findKey)]?.value.split(',')
-  data.map(el => {
-    tagGroups.map(g => {
-      if (el.key.includes(g.trim())) {colors.push({tag: el.key, className: el.value})}
-    })
-  })
-  
-  return {
-    firstPage: firstPage || 1,
-    perPage: perPage || 2,
-    colors: colors
   }
 }

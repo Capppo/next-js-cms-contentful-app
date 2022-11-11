@@ -1,10 +1,11 @@
 import Head from 'next/head'
 import {Container, Intro, HeroPost, Layout, MoreStories, Paginate} from '@components/index'
-import { getAllPostsForHome, getAllKeyValue } from '@lib/api'
+import { getAllPostsForHome } from '@lib/api'
+import { getAppParams } from '@lib/api2'
 import { useFetchUser } from '@lib/user'
 
 
-export default function Index({ preview, allPosts, firstPage, perPage, page, colors }) {
+export default function Index({ preview, allPosts, firstPage, perPage, page, colors, alert }) {
   const heroPost = allPosts?.items[0]
   const morePosts = allPosts?.items.slice(1)
   const { user, loading } = useFetchUser()
@@ -13,7 +14,7 @@ export default function Index({ preview, allPosts, firstPage, perPage, page, col
   
   return (
     <>
-      <Layout preview={preview} user={user} loading={loading}>
+      <Layout preview={preview} user={user} loading={loading} alertIn={alert ? alert['Alert: logged']:''} alertOut={alert ? alert['Alert: unlogged']:''} >
         <Head>
           <title>Have a fun! with {user?.name}</title>
         </Head>
@@ -43,32 +44,11 @@ export default function Index({ preview, allPosts, firstPage, perPage, page, col
 }
 
 export async function getStaticProps({ preview = false }) {
-  const {firstPage, perPage, colors} = await getPaginate()
+  const {firstPage, perPage, colors, alert} = await getAppParams()
   const allPosts = (await getAllPostsForHome(preview,firstPage)) ?? []
+  
   return {
-    props: { preview, allPosts, firstPage, perPage, page: 0 , colors},
+    props: { preview, allPosts, firstPage, perPage, page: 0 , colors, alert},
   }
 }
 
-export async function getPaginate() {
-  let colors = []
-  const data = await getAllKeyValue()
-  const findKey = (el) => el.key == keyToSearch
-  let keyToSearch = "First page posts"
-  let firstPage = data[data.findIndex(findKey)]?.value
-  keyToSearch = "Post per page"
-  let perPage = data[data.findIndex(findKey)]?.value
-  keyToSearch = "Tag groups"
-  let tagGroups = data[data.findIndex(findKey)]?.value.split(',')
-  data.map(el => {
-    tagGroups.map(g => {
-      if (el.key.includes(g.trim())) {colors.push({tag: el.key, className: el.value})}
-    })
-  })
-  
-  return {
-    firstPage: firstPage || 1,
-    perPage: perPage || 2,
-    colors: colors
-  }
-}

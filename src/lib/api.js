@@ -84,7 +84,23 @@ seasonsCollection {
   }
 }
 `
-
+const POST_GRAPHQL_LIST_BY_TYPE = `
+  date
+  title
+  slug
+  type
+  contentfulMetadata {
+    tags {
+      id
+      name
+    }
+  }
+  coverImage {
+    height
+    width
+    url
+  }
+`
 
 async function fetchGraphQL(query, preview = false) {
   return fetch(
@@ -140,6 +156,25 @@ export async function getAllPostsWithSlug() {
       postCollection(where: { slug_exists: true }, order: date_DESC) {
         items {
           ${POST_GRAPHQL_FIELDS}
+        }
+      }
+    }`
+  )
+  return extractPostEntries(entries)
+}
+
+export async function getAllPostsByType(type) {
+  const entries = await fetchGraphQL(
+    `query {
+      postCollection (
+        order: date_DESC
+        preview: false
+        skip: 0
+        limit: 999
+        where: { type_contains_some:  "${type}" } 
+      )  {
+        items {
+          ${POST_GRAPHQL_LIST_BY_TYPE}
         }
       }
     }`

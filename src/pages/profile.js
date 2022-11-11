@@ -1,14 +1,13 @@
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-import {Container, Header, Layout, MoreStories, SectionSeparator, TabsGroup} from '@components/index'
+import {Container, Header, Layout, SectionSeparator, TabsGroup} from '@components/index'
 
-import { getAllPostsWithSlug, getPostAndMorePosts, getAllKeyValue } from '@lib/api'
-import { useStatistics} from '@lib/api2'
+import { getAppParams, useStatistics} from '@lib/api2'
 import { CMS_NAME } from '@lib/constants'
 import { useFetchUser } from '@lib/user'
 
 
-export default function Profile({ post, morePosts, preview, keyValue, rows }) {
+export default function Profile({ preview, alert}) {
   const router = useRouter()
 /*
   if (!router.isFallback && !post) {
@@ -38,7 +37,7 @@ export default function Profile({ post, morePosts, preview, keyValue, rows }) {
  
  
   return (
-    <Layout preview={preview} user={user} loading={loading}>
+    <Layout preview={preview} user={user} loading={loading} alertIn={alert['Alert: profile'] ? alert['Alert: profile']:''} alertOut={'You MUST Login !!!'}>
       <Container>
         <Header />
         {isLoading || isError ? (
@@ -60,9 +59,6 @@ export default function Profile({ post, morePosts, preview, keyValue, rows }) {
               <TabsGroup  stats={stats} user={user} />
             </article>
             <SectionSeparator />
-            {morePosts && morePosts.length > 0 && (
-              <MoreStories posts={morePosts} />
-            )}
           </>
         )}
       </Container>
@@ -70,3 +66,10 @@ export default function Profile({ post, morePosts, preview, keyValue, rows }) {
   )
 }
 
+export async function getStaticProps({ preview = false }) {
+  const { alert} = await getAppParams()
+
+  return {
+    props: { preview, alert},
+  }
+}
