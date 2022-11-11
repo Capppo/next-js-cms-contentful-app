@@ -17,10 +17,15 @@ export default function Post({ post, preview, type, colors, alert }) {
   }
 
   const { user, loading } = useFetchUser()
+
+  let alertIn = '', alertOut = ''
+  if (alert) {
+    alertIn = alert['Alert: '+ type]
+    alertOut = alertIn
+  }
   
    return (
-    <Layout preview={preview} user={user} loading={loading} /* alertIn={alert['Alert: '+ type] ? alert['Alert: '+ type]:''} 
-                                                            alertOut={alert ? alert['Alert: unlogged']:''}*/ >
+    <Layout preview={preview} user={user} loading={loading} alertIn={alertIn} alertOut={alertOut}>
       <Container>
         <Header />
         {router.isFallback ? (
