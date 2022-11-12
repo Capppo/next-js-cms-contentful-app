@@ -22,7 +22,7 @@ const aggregateTag = (morePosts, filter) => {
   return {applicableTag,appliedTag}
 }
 
-export default function Page({ preview, pagePosts, firstPage, perPage, page, filter, colors }) {
+export default function Page({ preview, pagePosts, firstPage, perPage, page, filter, colors, alert }) {
   
   const morePosts = pagePosts?.items || []
   const {applicableTag,appliedTag} = aggregateTag(morePosts, filter)
@@ -33,7 +33,7 @@ export default function Page({ preview, pagePosts, firstPage, perPage, page, fil
   
   return (
     <>
-      <Layout preview={preview} user={user} loading={loading}>
+      <Layout preview={preview} user={user} loading={loading} alertIn={alert ? alert['Alert: filter']:''} alertOut={alert ? alert['Alert: filter']:''} >
         <Head>
           <title>Have a fun! with {user?.name}</title>
         </Head>

@@ -23,7 +23,11 @@ const InlineLink = ({uri, text, baseUrl, userName, userToken}) => {
   const clickTracer = (title) => {
     mixpanel.track("LINK: "+title);
   }*/
-  const href = slash(baseUrl, uri, userName, userToken)
+  const href = uri
+  if (text.includes('Download')) {
+    href = slash(baseUrl, uri, userName, userToken)
+  } 
+  
   return (
     <>
       {uri
@@ -48,9 +52,9 @@ const InlineVimeo = ({uri, text}) => {
   src = arr[arr.length-1]
 
  return (
-  <p class="iframe-container">
+  <div className="iframe-container">
     <iframe title={text} src={process.env.REACT_APP_VIMEO_EMBED_PATH + src} width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-  </p>
+  </div>
 )
 }
 
@@ -68,9 +72,10 @@ const InlineYoutube = ({uri, text}) => {
   }
 
   return (
-    <p class="iframe-container">
-      <iframe title={text} src={"https://www.youtube.com/embed/" + src} width="640" height="360"  allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" frameBorder="0" allowFullScreen></iframe>
-    </p>
+    <dev className=" ">
+      <iframe title={text} src={"https://www.youtube.com/embed/" + src}  className= "w-full aspect-video "
+              allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" frameBorder="0" allowFullScreen></iframe>
+    </dev>
   )
 }
 
@@ -169,7 +174,7 @@ const customMarkdownOptions = (content, baseUrl, userName, userToken) => ({
 export default function PostBody({ content, baseUrl , userName, userToken}) {
   
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl mx-auto ">
       <div className={markdownStyles['markdown']}>
         {documentToReactComponents(
           content.json,

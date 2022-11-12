@@ -50,7 +50,7 @@ export default function Post({ post, morePosts, preview, type, colors, alert }) 
           <PostTitle>Loading…</PostTitle>
         ) : (
           <>
-            <article className="mb-16">
+            <article className="mb-16 ">
               <Head>
                 <title>
                   {post.title} | Next.js Blog Example with {CMS_NAME}
