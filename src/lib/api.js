@@ -244,10 +244,10 @@ export async function getPostAndMorePosts(slug, preview) {
   }
 }
 
-export async function getAllKeyValue() {
+export async function getAllKeyValue(locale) {
   const entries = await fetchGraphQL(
     `query {
-      keyValueCollection {
+      keyValueCollection ( locale: "${locale ? locale:"en-US"}") {
         items {
           key
           value
@@ -255,7 +255,7 @@ export async function getAllKeyValue() {
       }
     }`
   )
-  return extractKeyValueEntries(entries)
+  return extractKeyValueEntries(entries) 
 }
 
 export async function getPaginatePosts(preview,skip,perPage) {

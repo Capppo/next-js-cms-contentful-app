@@ -44,11 +44,11 @@ export async function getAppParams() {
 
   let keyValue = {}
   const regex = /(?<=\().*?(?=\))/;   // searching between (  )
-  let keyToSearch = APP_KEY_MASTER
+   let keyToSearch = APP_KEY_MASTER
   const data = await getAllKeyValue()
   const findKey = (el) => el.key == keyToSearch
 
-  let keyMaster = data[data.findIndex(findKey)]?.value ? data[data.findIndex(findKey)]?.value.split('|'):[]
+  let keyMaster = data[data?.findIndex(findKey)]?.value ? data[data.findIndex(findKey)]?.value.split('|'):[]
   keyToSearch = []
   keyMaster.map(k => {
     const found = k.match(regex);

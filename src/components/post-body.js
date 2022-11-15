@@ -24,7 +24,7 @@ const InlineLink = ({uri, text, baseUrl, userName, userToken}) => {
     mixpanel.track("LINK: "+title);
   }*/
   const href = uri
-  if (text.includes('Download')) {
+  if (!href.includes('http://') && !href.includes('https://')) {
     href = slash(baseUrl, uri, userName, userToken)
   } 
   
@@ -52,8 +52,8 @@ const InlineVimeo = ({uri, text}) => {
   src = arr[arr.length-1]
 
  return (
-  <div className="iframe-container">
-    <iframe title={text} src={process.env.REACT_APP_VIMEO_EMBED_PATH + src} width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+  <div className=" ">
+    <iframe title={text} src={process.env.REACT_APP_VIMEO_EMBED_PATH + src} className= "w-full aspect-video " frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
   </div>
 )
 }
@@ -72,10 +72,10 @@ const InlineYoutube = ({uri, text}) => {
   }
 
   return (
-    <dev className=" ">
+    <span className=" ">
       <iframe title={text} src={"https://www.youtube.com/embed/" + src}  className= "w-full aspect-video "
               allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" frameBorder="0" allowFullScreen></iframe>
-    </dev>
+    </span>
   )
 }
 
