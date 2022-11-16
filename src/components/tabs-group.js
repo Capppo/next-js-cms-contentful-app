@@ -14,7 +14,7 @@ export default function TabsGroup({stats,user}) {
           <h2 className={user?.properties?.color ? userClass+" text-"+user?.properties?.color:userClass}>
           {user?.name}
           </h2>
-          <p>City: {user?.geoip.cityName}, Lat: {user?.geoip.latitude}, Lon: {user?.geoip.longitude}</p>
+          <p>City: {user?.geoip.cityName}, Lat: {user?.geoip.latitude}, Lon: {user?.geoip.longitude}, Ip: {user?.ip}</p>
         </div>
         <img src={user?.picture} className=" w-1/6 h-1/6 "></img>
       </div>
