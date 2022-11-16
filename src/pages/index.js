@@ -9,7 +9,7 @@ export default function Index({ preview, allPosts, firstPage, perPage, page, col
   const heroPost = allPosts?.items[0]
   const morePosts = allPosts?.items.slice(1)
   const { user, loading } = useFetchUser()
-  
+ 
   const paginate = {firstPage, perPage, page, totalItems: allPosts?.total, path: '/page'} 
   
   return (

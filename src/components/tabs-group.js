@@ -10,13 +10,13 @@ export default function TabsGroup({stats,user}) {
         <h3 className="text-1xl md:text-3xl font-bold tracking-tight md:tracking-tighter leading-tight mb-20 mt-8">
         User activities
         </h3>
-        <div className="flex flex-col">
+        <div className="flex flex-col ">
           <h2 className={user?.properties?.color ? userClass+" text-"+user?.properties?.color:userClass}>
           {user?.name}
           </h2>
-
+          <p>City: {user?.geoip.cityName}, Lat: {user?.geoip.latitude}, Lon: {user?.geoip.longitude}</p>
         </div>
-        <img src={user?.picture} className=" w-1/6 h-1/6"></img>
+        <img src={user?.picture} className=" w-1/6 h-1/6 "></img>
       </div>
     <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
         {stats.length > 0

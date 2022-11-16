@@ -17,10 +17,10 @@ export default function Profile({ preview, alert}) {
   const stats = []
   let isLoading = false, isError = false
   const { user, loading } = useFetchUser()
-
+  
   // these hook is called outside "if block" because otherwise React founds different hooks for rerender
   const { data: data1, isLoading: isL1, isError: isE1 } = useStatistics('/stat?user='+user?.name);
-  const { data: data2, isLoading: isL2, isError: isE2 } = useStatistics('/stats');
+  const { data: data2, isLoading: isL2, isError: isE2 } = useStatistics('/stats?user='+user?.name);
   
   if (user?.name) {
     stats.push({title: "Downloads", data: data1})
