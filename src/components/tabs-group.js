@@ -3,18 +3,19 @@ import {Table} from '@components/index'
 
 
 export default function TabsGroup({stats,user}) {
-  const userClass ="text-xl md:text-2xl font-bold tracking-tight md:tracking-tighter leading-tight mb-20 mt-8 "
+  const userClass ="text-xl md:text-2xl font-bold tracking-tight md:tracking-tighter leading-tight mb-8 mt-8 "
   return (
     <>
       <div className="flex justify-between ">  
-        <h3 className="text-1xl md:text-3xl font-bold tracking-tight md:tracking-tighter leading-tight mb-20 mt-8">
+        <h3 className="text-1xl md:text-3xl font-bold tracking-tight md:tracking-tighter leading-tight mb-20 mt-8 ">
         User activities
         </h3>
         <div className="flex flex-col ">
           <h2 className={user?.properties?.color ? userClass+" text-"+user?.properties?.color:userClass}>
           {user?.name}
           </h2>
-          <p>City: {user?.geoip.cityName}, Lat: {user?.geoip.latitude}, Lon: {user?.geoip.longitude}, Ip: {user?.ip}</p>
+          <div className=" mb-2"><b>City:</b> {user?.geoip.cityName}, <b>Ip:</b> {user?.ip}</div>
+          <div className=" "><b>Lat:</b> {user?.geoip.latitude}, <b>Lon:</b> {user?.geoip.longitude}</div>
         </div>
         <img src={user?.picture} className=" w-1/6 h-1/6 "></img>
       </div>
